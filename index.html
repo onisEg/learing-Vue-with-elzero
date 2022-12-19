@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn Vue</title>
+</head>
+
+<body>
+
+
+    <div id="el1">
+        <h1>Welcome to vue.js course</h1>
+        <h2 v-text="name"></h2>
+        <p>welcome {{'MR '+ name}} we are happy to see you. </p>
+        <p>{{yourAgeInDays()}}</p>
+        <p>{{date}}</p>
+        <button @click="showNewDate">show new date</button>
+        <p v-show="name">this is : {{name}}</p>
+
+
+        <form action="" method="post">
+            <input type="text" :value="name" placeholder="Using v-bind">
+            <input type="text" v-model="name" placeholder="Using v-model">
+        </form>
+        your name is {{name}}
+
+
+        <hr>
+
+        <div> Checked names: {{checkedNmaes}}</div>
+        <input type="checkbox" id="jack" value="jack" v-model="checkedNmaes">
+        <label for="jack">jack</label>
+
+        <input type="checkbox" id="john" value="john" v-model="checkedNmaes">
+        <label for="john">john</label>
+
+        <input type="checkbox" id="mike" value="mike" v-model="checkedNmaes">
+        <label for="mike">mike</label>
+
+        <app-count></app-count>
+        <app-count></app-count>
+        <app-count></app-count>
+        <app-count></app-count>
+        <app-count></app-count>
+        <app-count></app-count>
+        <p>template literals (template strings )</p>
+
+    </div>
+
+
+    <script src="js/vue.js"></script>
+    <script>
+        Vue.component('app-count', {
+            data: function () {
+                return {
+                    name: "Ahmed",
+                    count: 0,
+
+                }
+            },
+            template: '<h3 @click="count++"> Hello {{name}} you clicked this {{count}} times </h3>'
+        })
+        var vm = new Vue({
+            el: '#el1',
+            data: {
+                name: 'Osama',
+                age: 30,
+                date: 'Today',
+                checkedNmaes: [],
+
+            },
+            methods: {
+                yourAgeInDays: function () {
+                    return 'Your age in days is : ' + this.age * 365;
+                },
+                showNewDate: function () {
+                    this.date = Date();
+                }
+            }
+        })
+
+    </script>
+
+</body>
+
+</html>
